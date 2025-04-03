@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -20,7 +21,11 @@
 	<main>
 
 
-	<h3><?php echo $message; ?></h3>
+	<?php if (array_key_exists("order", $_SESSION)) { ?>
+		<p>Vous avez une commande en attente : <?php echo $_SESSION["order"]["quantity"]; ?> : <?php echo $_SESSION["order"]["product"]; ?></p>
+	<?php } ?>
+
+
 
 		<form method="POST" >
 
@@ -30,9 +35,9 @@
 
 			<label for="product">
 				<select name="product">
-					<option value="teeshirt_mario">Teeshirt Mario</option>
-					<option value="teeshirt_hello_kitty">Teeshirt Hello Kitty</option>
-					<option value="teeshirt_gta">Teeshirt GTA</option>
+					<?php foreach ($products as $product) { ?>
+						<option value="<?php echo $product; ?>"><?php echo $product; ?></option>
+					<?php } ?>
 				</select>
 			</label>
 

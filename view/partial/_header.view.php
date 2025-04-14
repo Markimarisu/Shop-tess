@@ -8,14 +8,13 @@
 </head>
 <body>
 
-	<header>
-
-		<nav>
-			<ul>
-				<li><a href="http://localhost:8888/piscine-shop-tees/controller/create-order.controller.php">Créer une commande</a></li>
-				<li><a href="http://localhost:8888/piscine-shop-tees/controller/pay-order.controller.php">Payer la commande</a></li>
-				<li><a href="http://localhost:8888/piscine-shop-tees/controller/cancel-order.controller.php">Annuler la commande</a></li>
-			</ul>
-		</nav>
-
-	</header>
+    <header>
+        <nav>
+            <ul>MENU
+                <li><a href="http://localhost:8888/Projet_ShopTees/controller/create-order-controller.php">Créer une commande</a></li>
+                <li><a href="http://localhost:8888/Projet_ShopTees/controller/pay-order-controller.php">Payer la commande</a></li>
+                <li><a href="http://localhost:8888/Projet_ShopTees/controller/cancel-order-controller.php">Annuler la commande</a></li>
+                <li><a href="http://localhost:8888/Projet_ShopTees/controller/ship-order-controller.php">Expédier la commande</a></li>
+            </ul>
+        </nav>
+    </header>

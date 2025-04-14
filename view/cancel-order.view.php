@@ -1,31 +1,27 @@
-<?php
-
-use Vtiful\Kernel\Format;
-require_once("../view/partial/_header.php")
-?>
+<?php require('../view/partial/_header.view.php'); ?>
 
 <main>
-    <h2>Annuler votre commande</h2>
+	
+	<h1>Annuler une commande</h1>
+
+	<p><?php echo $message; ?></p>
+
+	<?php if ($orderByUser) { ?>
+		<p> <?php echo $orderByUser['prod']; ?> :  <?php echo $orderByUser['quanty']; ?>
+		<p>Créée le <?php echo $orderByUser['creaAt']->format('y-m-d'); ?></p>
+		<p>Votre commande est en statut :<?php echo $orderByUser['status']; ?> </p>
 
 
-        <p><?php echo $message; ?></p>
+		<form method="post">
+			<button type="submit">Annuler cette commande</button>
+		</form>
 
-		<?php if ($orderByUser) {?>
-			<p class="message">Vous avez une commande : <?php echo $orderByUser['quantity']; ?> x <?php echo $orderByUser['product']; ?>
-			<p class="message">Créée le <?php echo $orderByUser['createdAt']->format('y-m-d'); ?></p>
-            <p class="message">Votre commande est en status : <?php echo $orderByUser['status']; ?> </p>
+	<?php } else { ?>
+		<p>Vous n'avez pas de commande à annuler</p>
+	<?php } ?>
+	
 
-            <form method="post">
-            <button type="submit">Annuler la commande</button>
-            </form>
-
-		<?php } else {?>
-            <p>Vous n'avez pas de commande à annuler</p>
-            <?php }?>
-
-    </form>
 </main>
 
 </body>
-
 </html>

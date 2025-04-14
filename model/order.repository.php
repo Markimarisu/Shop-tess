@@ -1,39 +1,42 @@
 <?php
 
-
-//SELECT * FROM order where user.id = $id
-function findOrderByUser() {
-	if (array_key_exists("order", $_SESSION)) {
-		return $_SESSION["order"];
-	} else {
-		return null;
-	}
+//cette fonction cherche dans la session si une clé "order" existe (=si une commande a été enregistée par l'utilisateur)
+function findOrderByUser(){
+    if (array_key_exists("order", $_SESSION)){
+        return $_SESSION["order"];
+    }else{
+        return null;
+    }
 }
+// fct permettant de créer une commande (prend 2 paramètres $product et $quantity)
+function createOrder($product, $quantity){
+    
+// LA GESTION DES EXCEPTIONS 
+    // Vérifier que la quantité est positive
+    if($quantity < 0){
+       throw new Exception("Interdiction de mettre une quantité inférieure à 0");
+    
+    //Vérifier que la quantité ne dépasse pas 4 
+    }else if ($quantity > 4){
+        throw new Exception("Interdicton de mettre la quantité supérieur à 4");
+    
+    //Création de la commande avec la date actuelle 
+    // status "CART" = la commande est dans le panier et n'a pas encore été passée ou traitée
+    }else{
+        $order=[
+            "product" => $product,
+            "quantity" => $quantity,
+            "createdAt" => new DateTime(),
+            "status" => "CART"
+        ];
+        return $order; 
+        //retouner l'ordre créé 
+    }
+};
 
-// vérifie que la commande a le droit d'être créée
-// créé la commande
-function createOrder($product, $quantity) {
-
-	if ($quantity < 0) {
-		throw new Exception("Interdiction de mettre une quantité inférieure à 0");
-	} else if ($quantity > 3){
-		throw new Exception("Interdication de mettre quantité supérieur à 3");
-
-	} else {
-
-		$order = [
-			"product" => $product,
-			"quantity" => $quantity,
-			"createdAt" => new DateTime(),
-			"status" => "CART"
-		];
-	
-		return $order;
-	}
-}
-
-
-// INSERT INTO order values ($order['product'], $order['quantity'])
-function saveOrder($order) {
-	$_SESSION["order"] = $order;
+//fct permettant de sauvegarder les commandes
+//prend un paramètre $order ()= commande)
+// fct vérifie s'il y a une commande, elle sera sauvegardée dans $_session
+function savedOrder ($order){
+    $_SESSION["order"]= $order;
 }
